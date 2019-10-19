@@ -47,16 +47,16 @@
                   </td>
                   <td>
                       <span class="ui-column-title">Vencimento</span>
-                      {{lancamento.dataVencimento}}
+                      {{lancamento.dataVencimento | date:'dd/MM/y'}}
                   </td>
                   <td>
                       <span class="ui-column-title">Pagamento</span>
-                      {{lancamento.dataPagamento}}
+                      {{lancamento.dataPagamento | date:'dd/MM/y'}}
                   </td>
                   <td class="col-valor-content">
                       <span class="ui-column-title">Valor</span>
                       <span [ngStyle]="{ color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue' }">
-                          {{lancamento.valor}}
+                          {{lancamento.valor | currency:'BRL':true:'1.2-2'}}
                       </span>
                   </td>
                   <td class="col-acoes">
