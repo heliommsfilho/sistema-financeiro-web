@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
+import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { ButtonModule } from 'primeng/components/button/button';
 import { TableModule } from 'primeng/components/table/table';
@@ -31,7 +32,8 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
     TableModule,
     TooltipModule,
     CalendarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SelectButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
