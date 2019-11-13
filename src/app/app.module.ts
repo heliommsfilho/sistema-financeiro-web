@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
@@ -15,6 +16,8 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
     TooltipModule,
     CalendarModule,
     BrowserAnimationsModule,
-    SelectButtonModule
+    SelectButtonModule,
+    DropdownModule,
+    CurrencyMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
