@@ -12,11 +12,12 @@ import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtexta
 import { ButtonModule } from 'primeng/components/button/button';
 import { TableModule } from 'primeng/components/table/table';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
-import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 
 
@@ -40,7 +41,8 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     BrowserAnimationsModule,
     SelectButtonModule,
     DropdownModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    InputMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
