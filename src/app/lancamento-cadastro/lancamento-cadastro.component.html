@@ -1,5 +1,5 @@
 <div class="container">
-    <form>
+    <form autocomplete="off">
         <div class="ui-g">
             <div class="ui-g-12">
                 <h1>Novo Lançamento</h1>
@@ -20,13 +20,23 @@
             </div>
 
             <div class="ui-g-12 ui-md-9 ui-fluid">
-                <label for="descricao">Descrição</label>
-                <input pInputText type="text">
+                <label for="descricao">Descrição {{ descricao.errors | json }}</label>
+                <input pInputText type="text" name="descricao" required minlength="5"  
+                    ngModel #descricao="ngModel">
+
+                <div *ngIf="descricao.hasError('required') && descricao.dirty" class="ui-messages ui-messages-error">
+                    Informe uma descrição
+                </div>
+
+                <div *ngIf="descricao.hasError('minlength') && descricao.dirty" class="ui-messages ui-messages-error">
+                        Mínimo de {{ descricao.errors.requiredLength }} caracteres. 
+                    </div>
             </div>
 
             <div class="ui-g-12 ui-md-3 ui-fluid">
                 <label for="valor">Valor</label>
-                <input pInputText currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" type="text" placeholder="0,00">
+                <input pInputText currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" type="text" placeholder="0,00"
+                    name="valor" ngModel>
             </div>
 
             <div class="ui-g-12 ui-md-6 ui-fluid">
