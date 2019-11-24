@@ -6,17 +6,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
-import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadastro.component';
-import { MessageComponent } from './message/message.component';
-import { PessoasGridComponent } from './pessoas/pessoas-grid/pessoas-grid.component';
 import { PessoasModule } from './pessoas/pessoas.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    MessageComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

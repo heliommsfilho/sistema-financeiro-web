@@ -24,8 +24,8 @@
                 <input pInputText type="text" name="descricao" required minlength="5"  
                     ngModel #descricao="ngModel">
                 
-                <!-- <app-message [control]="descricao" error="required" text="Informe uma descrição"></app-message>
-                <app-message [control]="descricao" error="minlength" text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message> -->
+                <app-message [control]="descricao" error="required" text="Informe uma descrição"></app-message>
+                <app-message [control]="descricao" error="minlength" text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
             </div>
 
             <div class="ui-g-12 ui-md-3 ui-fluid">
