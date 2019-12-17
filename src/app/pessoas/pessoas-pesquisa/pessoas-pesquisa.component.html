@@ -1,21 +1,65 @@
 <div class="container">
-    <div class="ui-g">
-        <div class="ui-g-12">
-            <h1>Pessoas</h1>
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h1>Pessoas</h1>
+            </div>
         </div>
-    </div>
-
+    
+        <div class="ui-g-12 ui-fluid">
+            <label for="nome">Nome</label>
+            <input pInputText id="nome" type="text" name="nome" [(ngModel)]="filtro.nome"/>
+        </div>
+    
+        <div class="ui-g-12">
+            <button pButton type="submit" label="Pesquisar"></button>
+        </div>    
+    </form>
+    
     <div class="ui-g-12 ui-fluid">
-        <label for="nome">Nome</label>
-        <input pInputText id="nome" type="text" value=""/>
-    </div>
-
-    <div class="ui-g-12">
-        <button pButton type="submit" label="Pesquisar"></button>
-    </div>
-
-    <div class="ui-g-12 ui-fluid">
-        <app-pessoas-grid [pessoas]="pessoas"></app-pessoas-grid>
+        <p-table [value]="pessoas"  [responsive]="true" emptyMessage="Nenhuma pessoa encontrada"
+                 [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true"
+                 [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nome</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Status</th>
+                    <th class="col-acoes"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-pessoa>
+                <tr>
+                    <td>
+                        <span class="ui-column-title">Nome</span>
+                        {{pessoa.nome}}
+                    </td>
+                    <td>
+                        <span class="ui-column-title">Cidade</span>
+                        {{pessoa.endereco.cidade}}
+                    </td>
+                    <td>
+                        <span class="ui-column-title">Estado</span>
+                        {{pessoa.endereco.estado}}
+                    </td>
+                    <td>
+                        <span class="ui-column-title">Status</span>
+                        <a class="link-ativar-desativar" href="#" pTooltip="{{pessoa.ativo ? 'Desativar' : 'Ativar'}}" tooltipPosition="top">
+                            {{pessoa.ativo ? 'Ativo' : 'Inativo'}}
+                        </a>
+                    </td>
+                    <td class="col-acoes">
+                        <span class="ui-column-title"></span>
+                        <a pButton icon="pi pi-pencil" style="margin-right: 5px;"
+                            pTooltip="Editar" tooltipPosition="top"></a>
+                        <span class="ui-column-title"></span>
+                        <a pButton icon="pi pi-trash"
+                            pTooltip="Excluir" tooltipPosition="top"></a>
+                    </td>
+                </tr>
+          </ng-template>
+        </p-table>
     </div>
 
     <div class="ui-g-12">
