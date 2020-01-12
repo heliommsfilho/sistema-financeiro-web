@@ -10,6 +10,7 @@ import { PessoaService } from './../pessoas/pessoa.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 import { CategoriasService } from '../categorias/categorias.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CategoriasService } from '../categorias/categorias.service';
     CommonModule,
     ConfirmDialogModule,
     ToastyModule.forRoot(),
+    RouterModule
   ], exports: [
     NavbarComponent,
     ToastyModule,
