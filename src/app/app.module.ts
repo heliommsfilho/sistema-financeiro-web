@@ -4,16 +4,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
-
-import { ToastyModule } from 'ng2-toasty';
 
 import { AppComponent } from './app.component';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { CoreModule } from './core/core.module';
-import { LancamentoService } from './lancamentos/lancamento.service';
-import { PessoaService } from './pessoas/pessoa.service';
-import { ConfirmationService } from 'primeng/components/common/api';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
@@ -28,18 +22,12 @@ registerLocaleData(localePt, 'pt-BR');
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    ConfirmDialogModule,
-
-    ToastyModule.forRoot(),
 
     CoreModule,
     LancamentosModule,
     PessoasModule
   ],
   providers: [
-    LancamentoService,
-    PessoaService,
-    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
