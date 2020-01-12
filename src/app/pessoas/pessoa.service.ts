@@ -51,6 +51,15 @@ export class PessoaService {
                           });
   }
 
+  mudarStatus(codigo: number, ativo: boolean) {
+    let headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW46YWRtaW4=');
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.httpClient.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
+                          .toPromise()
+                          .then(() => null);
+  }
+
   excluir(codigo: number) {
     const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW46YWRtaW4=');
 

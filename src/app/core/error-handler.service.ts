@@ -8,14 +8,18 @@ export class ErrorHandlerService {
 
   constructor(private toasty: ToastyService) { }
 
-  handle(errorResponse: any) { 
+  handle(errorResponse: any) {
     let msg: string;
 
     if (typeof errorResponse === 'string') {
       msg = errorResponse;
+
+    } else if (errorResponse.status >= 400 && errorResponse.status <= 499) {
+      msg = errorResponse.error[0].mensagemUsuario;
+      console.error('Ocorreu um erro', errorResponse);
     } else {
-      msg = 'Erro ao processar serviço remoto. Tente novamente';
-      console.log('Ocorreu um erro', errorResponse);
+      msg = 'Erro ao processar serviço remoto. Tente novamente.';
+      console.error('Ocorreu um erro', errorResponse);
     }
 
     this.toasty.error(msg);
