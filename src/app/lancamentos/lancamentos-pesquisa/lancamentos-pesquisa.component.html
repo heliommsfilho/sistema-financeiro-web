@@ -70,7 +70,8 @@
                   <td class="col-acoes">
                     <span class="ui-column-title"></span> 
                     <a pButton icon="pi pi-pencil" style="margin-right: 5px;" 
-                        pTooltip="Editar" tooltipPosition="top"></a>
+                        pTooltip="Editar" tooltipPosition="top"
+                        [routerLink]="['/lancamentos', 'lancamento.codigo']"></a>
                     <button pButton icon="pi pi-trash"
                             pTooltip="Excluir" tooltipPosition="top"
                             (click)="confirmarExclusao(lancamento)">
