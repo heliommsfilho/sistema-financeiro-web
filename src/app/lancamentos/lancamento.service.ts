@@ -48,6 +48,18 @@ export class LancamentoService {
                           });
   }
 
+  buscarPorCodigo(codigo: number) {
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW46YWRtaW4=');
+
+    return this.httpClient.get(`${this.lancamentosUrl}/${codigo}`, { headers })
+                          .toPromise().then(response => {
+                            const lancamento = response as Lancamento;
+                            this.converterStringsParaDatas([lancamento]);
+
+                            return lancamento;
+                          });
+  }
+
   adicionar(lancamento: Lancamento): Promise<Lancamento> {
     let headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW46YWRtaW4=');
     headers = headers.append('Content-Type', 'application/json');
@@ -56,11 +68,35 @@ export class LancamentoService {
                           .toPromise();
   }
 
+  atualizar(lancamento: Lancamento): Promise<Lancamento> {
+    let headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW46YWRtaW4=');
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.httpClient.put<Lancamento>(this.lancamentosUrl, JSON.stringify(lancamento), { headers })
+                          .toPromise()
+                          .then(response => {
+                            const lancamentoAlterado = response as Lancamento;
+                            this.converterStringsParaDatas([lancamentoAlterado]);
+
+                            return lancamentoAlterado;
+                          });
+  }
+
   excluir(codigo: number): Promise<void> {
     const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW46YWRtaW4=');
 
     return this.httpClient.delete(`${this.lancamentosUrl}/${codigo}`, { headers })
                           .toPromise()
                           .then(() => null);
+  }
+
+  private converterStringsParaDatas(lancamentos: Lancamento[]) {
+    for (const lancamento of lancamentos) {
+      lancamento.dataVencimento = moment(lancamento.dataVencimento, 'YYYY-MM-DD').toDate();
+
+      if (lancamento.dataPagamento) {
+        lancamento.dataPagamento = moment(lancamento.dataPagamento, 'YYYY-MM-DD').toDate();
+      }
+    }
   }
 }
