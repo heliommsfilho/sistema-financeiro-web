@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { ErrorHandlerService } from '../core/error-handler.service';
+import { FormControl } from '@angular/forms';
+import { Pessoa } from '../core/model';
 
 export class PessoaFiltro {
   nome: string;
@@ -14,7 +16,7 @@ export class PessoaFiltro {
 export class PessoaService {
 
   pessoasUrl = 'http://localhost:8080/pessoas';
-  
+
   constructor(private httpClient: HttpClient,
               private errorHandler: ErrorHandlerService) { }
 
@@ -27,7 +29,7 @@ export class PessoaService {
     params = params.set('size', filtro.itensPorPagina.toString());
 
     console.log('Nome', filtro.nome);
-    
+
     if (filtro.nome) {
       params = params.set('nome', filtro.nome);
     }
@@ -46,7 +48,7 @@ export class PessoaService {
     return this.httpClient.get(`${this.pessoasUrl}`, { headers })
                           .toPromise().then(response => {
                             const pessoas = response['content'];
-                            const resultado = { pessoas, total: response['totalElements'] }
+                            const resultado = { pessoas, total: response['totalElements'] };
                             return resultado;
                           });
   }
@@ -58,6 +60,14 @@ export class PessoaService {
     return this.httpClient.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
                           .toPromise()
                           .then(() => null);
+  }
+
+  adicionar(pessoa: Pessoa) {
+    let headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW46YWRtaW4=');
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.httpClient.post<Pessoa>(this.pessoasUrl, JSON.stringify(pessoa), { headers })
+                          .toPromise();
   }
 
   excluir(codigo: number) {
