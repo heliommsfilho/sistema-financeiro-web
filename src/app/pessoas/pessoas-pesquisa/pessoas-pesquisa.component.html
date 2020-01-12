@@ -19,7 +19,7 @@
     <div class="ui-g-12 ui-fluid">
         <p-table [value]="pessoas"  [responsive]="true" emptyMessage="Nenhuma pessoa encontrada"
                  [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true"
-                 [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
+                 [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
             <ng-template pTemplate="header">
                 <tr>
                     <th>Nome</th>
@@ -55,7 +55,8 @@
                             pTooltip="Editar" tooltipPosition="top"></a>
                         <span class="ui-column-title"></span>
                         <a pButton icon="pi pi-trash"
-                            pTooltip="Excluir" tooltipPosition="top"></a>
+                            pTooltip="Excluir" tooltipPosition="top"
+                            (click)="confirmarExclusao(pessoa)"></a>
                     </td>
                 </tr>
           </ng-template>

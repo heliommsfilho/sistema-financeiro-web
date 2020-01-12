@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PessoaFiltro, PessoaService } from '../pessoa.service';
-import { LazyLoadEvent } from 'primeng/components/common/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
+import { Table } from 'primeng/components/table/table';
+import { ToastyService } from 'ng2-toasty';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -12,9 +15,15 @@ export class PessoasPesquisaComponent  {
   totalRegistros = 0;
   filtro = new PessoaFiltro();
 
+  /* Acessa a instância do Table via código TypeScript */
+  @ViewChild('tabela', { static: true }) tabela: Table;
+
   pessoas = [];
 
-  constructor(private pessoasService: PessoaService) { }
+  constructor(private pessoasService: PessoaService,
+              private toasty: ToastyService,
+              private confirmation: ConfirmationService,
+              private errorHandler: ErrorHandlerService) { }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
@@ -24,6 +33,22 @@ export class PessoasPesquisaComponent  {
                          this.totalRegistros = resultado.total;
                          this.pessoas = resultado.pessoas;
                        });
+  }
+
+  confirmarExclusao(lancamento: any) {
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => { this.excluir(lancamento) }
+    });
+  }
+
+  excluir(pessoa: any) {
+    this.pessoasService.excluir(pessoa.codigo)
+                       .then(() => {
+                         this.tabela.reset();
+                         this.toasty.success('Pessoa excluída com sucesso!');
+                       })
+                       .catch(erro => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event : LazyLoadEvent) {
