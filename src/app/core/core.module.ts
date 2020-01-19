@@ -12,6 +12,7 @@ import { ErrorHandlerService } from './error-handler.service';
 import { CategoriasService } from '../categorias/categorias.service';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncotradaComponent } from './pagina-nao-encotrada.component';
+import {Title} from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PaginaNaoEncotradaComponent } from './pagina-nao-encotrada.component';
     CategoriasService,
     PessoaService,
 
-    ConfirmationService
+    ConfirmationService,
+    Title
   ]
 })
 export class CoreModule { }

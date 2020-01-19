@@ -4,6 +4,7 @@ import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
 import { Table } from 'primeng/components/table/table';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -20,18 +21,21 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   lancamentos = [];
 
-  constructor(private lancamentoService : LancamentoService,
+  constructor(private lancamentoService: LancamentoService,
               private toasty: ToastyService,
               private confirmation: ConfirmationService,
-              private errorHandler: ErrorHandlerService) { }
+              private errorHandler: ErrorHandlerService,
+              private title: Title) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.title.setTitle('Pesquisa de lançamentos');
+  }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
 
     this.lancamentoService.pesquisar(this.filtro)
-                          .then(resultado => { 
+                          .then(resultado => {
                             this.totalRegistros = resultado.total;
                             this.lancamentos = resultado.lancamentos
                           })
