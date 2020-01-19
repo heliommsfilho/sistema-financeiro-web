@@ -5,17 +5,17 @@
                 <h1>Pessoas</h1>
             </div>
         </div>
-    
+
         <div class="ui-g-12 ui-fluid">
             <label for="nome">Nome</label>
             <input pInputText id="nome" type="text" name="nome" [(ngModel)]="filtro.nome"/>
         </div>
-    
+
         <div class="ui-g-12">
             <button pButton type="submit" label="Pesquisar"></button>
-        </div>    
+        </div>
     </form>
-    
+
     <div class="ui-g-12 ui-fluid">
         <p-table [value]="pessoas"  [responsive]="true" emptyMessage="Nenhuma pessoa encontrada"
                  [paginator]="true" [rows]="filtro.itensPorPagina" [lazy]="true"
@@ -45,16 +45,17 @@
                     </td>
                     <td>
                         <span class="ui-column-title">Status</span>
-                        <a class="link-ativar-desativar" href="#" 
-                           pTooltip="{{pessoa.ativo ? 'Desativar' : 'Ativar'}}" 
+                        <a class="link-ativar-desativar" href="#"
+                           pTooltip="{{pessoa.ativo ? 'Desativar' : 'Ativar'}}"
                            tooltipPosition="top" (click)="alternarStatus(pessoa)">
                             {{pessoa.ativo ? 'Ativo' : 'Inativo'}}
                         </a>
                     </td>
                     <td class="col-acoes">
                         <span class="ui-column-title"></span>
-                        <a pButton icon="pi pi-pencil" style="margin-right: 5px;"
-                            pTooltip="Editar" tooltipPosition="top"></a>
+                      <a pButton icon="pi pi-pencil"
+                         pTooltip="Editar" tooltipPosition="top"
+                         [routerLink]="['/pessoas', pessoa.codigo]"></a>
                         <span class="ui-column-title"></span>
                         <a pButton icon="pi pi-trash"
                             pTooltip="Excluir" tooltipPosition="top"
@@ -66,6 +67,6 @@
     </div>
 
     <div class="ui-g-12">
-        <button pButton type="submit" label="Nova Pessoa"></button>
+      <a pButton label="Nova Pessoa" routerLink="/pessoas/nova"></a>
     </div>
 </div>
