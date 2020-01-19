@@ -4,24 +4,24 @@
         <div class="ui-g-12">
             <h1>Lançamentos</h1>
           </div>
-        
+
           <div class="ui-g-12 ui-fluid">
             <label for="descricao">Descrição</label>
             <input pInputText id="descricao" type="text" name="descricao" [(ngModel)]="filtro.descricao"/>
           </div>
-        
+
           <div class="ui-g-12">
             <label for="vencimentoDe" class="label-inline">Vencimento</label>
             <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
                         name="vencimentoInicio" [(ngModel)]="filtro.dataVencimentoInicio">
             </p-calendar>
-        
+
             <label for="vencimentoAte">até</label>
             <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
                         name="vencimentoFim" [(ngModel)]="filtro.vencimentoFim">
             </p-calendar>
           </div>
-        
+
           <div class="ui-g-12">
             <button pButton type="submit" label="Pesquisar"></button>
           </div>
@@ -68,10 +68,10 @@
                       </span>
                   </td>
                   <td class="col-acoes">
-                    <span class="ui-column-title"></span> 
-                    <a pButton icon="pi pi-pencil" style="margin-right: 5px;" 
+                    <span class="ui-column-title"></span>
+                    <a pButton icon="pi pi-pencil" style="margin-right: 5px;"
                         pTooltip="Editar" tooltipPosition="top"
-                        [routerLink]="['/lancamentos', 'lancamento.codigo']"></a>
+                        [routerLink]="['/lancamentos', lancamento.codigo]"></a>
                     <button pButton icon="pi pi-trash"
                             pTooltip="Excluir" tooltipPosition="top"
                             (click)="confirmarExclusao(lancamento)">
@@ -81,10 +81,9 @@
               </ng-template>
               </p-table>
       </div>
-    
+
     <div class="ui-g-12">
         <a routerLink="/lancamentos/novo" pButton label="Novo Lançamento"></a>
     </div>
   </div>
 </div>
-  

@@ -2,11 +2,11 @@
     <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
         <div class="ui-g">
             <div class="ui-g-12">
-                <h1>Novo Lançamento</h1>
+                <h1>{{ editando ? 'Edição de' : 'Novo' }} Lançamento</h1>
             </div>
 
             <div class="ui-g-12">
-                <p-selectButton [options]="tipos" #tipo 
+                <p-selectButton [options]="tipos" #tipo
                                 [(ngModel)]="lancamento.tipo"></p-selectButton>
             </div>
 
@@ -24,9 +24,9 @@
 
             <div class="ui-g-12 ui-md-9 ui-fluid">
                 <label for="descricao">Descrição</label>
-                <input pInputText type="text" name="descricao" required minlength="5"  
+                <input pInputText type="text" name="descricao" required minlength="5"
                     ngModel #descricao="ngModel" [(ngModel)]="lancamento.descricao">
-                
+
                 <app-message [control]="descricao" error="required" text="Informe uma descrição"></app-message>
                 <app-message [control]="descricao" error="minlength" text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
             </div>

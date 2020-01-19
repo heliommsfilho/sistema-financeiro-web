@@ -43,8 +43,7 @@ export class LancamentoService {
     return this.httpClient.get(`${this.lancamentosUrl}?resumo`, { headers, params})
                           .toPromise().then(response => {
                             const lancamentos = response['content'];
-                            const resultado = { lancamentos, total: response['totalElements'] };
-                            return resultado;
+                            return { lancamentos, total: response['totalElements'] };
                           });
   }
 

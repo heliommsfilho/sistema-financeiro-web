@@ -1,9 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { ErrorHandlerService } from '../core/error-handler.service';
-import { FormControl } from '@angular/forms';
-import { Pessoa, Lancamento } from '../core/model';
-import moment = require('moment');
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {ErrorHandlerService} from '../core/error-handler.service';
+import {Pessoa} from '../core/model';
 
 export class PessoaFiltro {
   nome: string;
