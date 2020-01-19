@@ -11,10 +11,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 import { CategoriasService } from '../categorias/categorias.service';
 import { RouterModule } from '@angular/router';
+import { PaginaNaoEncotradaComponent } from './pagina-nao-encotrada.component';
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    PaginaNaoEncotradaComponent
   ],
   imports: [
     CommonModule,
