@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { CategoriasService } from 'src/app/categorias/categorias.service';
-import { PessoaService } from 'src/app/pessoas/pessoa.service';
-import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Lancamento } from 'src/app/core/model';
-import { FormControl } from '@angular/forms';
-import { LancamentoService } from '../lancamento.service';
-import { ToastyService } from 'ng2-toasty';
-import { format } from 'url';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {CategoriasService} from 'src/app/categorias/categorias.service';
+import {PessoaService} from 'src/app/pessoas/pessoa.service';
+import {ErrorHandlerService} from 'src/app/core/error-handler.service';
+import {Lancamento} from 'src/app/core/model';
+import {FormControl} from '@angular/forms';
+import {LancamentoService} from '../lancamento.service';
+import {ToastyService} from 'ng2-toasty';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -54,6 +53,14 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizarLancamento(form);
+    } else {
+      this.adicionarLancamento(form);
+    }
+  }
+
+  adicionarLancamento(form: FormControl) {
     this.lancamentoService.adicionar(this.lancamento)
                           .then(() => {
                             this.toasty.success('Lançamento adicionado com sucesso!');
@@ -61,6 +68,20 @@ export class LancamentoCadastroComponent implements OnInit {
                             this.lancamento = new Lancamento();
                           })
                           .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  atualizarLancamento(form: FormControl) {
+    console.log('lanc', this.lancamento);
+
+    this.lancamentoService.atualizar(this.lancamento)
+      .then(lancamento => {
+        this.lancamento = lancamento;
+        this.toasty.success('Lançamento alterado com sucesso');
+      })
+      .catch(erro => {
+        console.log(erro);
+        this.errorHandler.handle(erro);
+      });
   }
 
   carregarCategorias() {
