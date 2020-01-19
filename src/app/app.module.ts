@@ -1,30 +1,16 @@
-import { LancamentosModule } from './lancamentos/lancamentos.module';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
+import {LancamentosModule} from './lancamentos/lancamentos.module';
+import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
-import { AppComponent } from './app.component';
-import { PessoasModule } from './pessoas/pessoas.module';
-import { CoreModule } from './core/core.module';
-import { registerLocaleData } from '@angular/common';
+import {AppComponent} from './app.component';
+import {PessoasModule} from './pessoas/pessoas.module';
+import {CoreModule} from './core/core.module';
+import {registerLocaleData} from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
-import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
-import {PaginaNaoEncotradaComponent} from './core/pagina-nao-encotrada.component';
-
-const routes: Routes = [
-  { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
-  { path: 'lancamentos', component: LancamentosPesquisaComponent },
-  { path: 'lancamentos/novo', component: LancamentoCadastroComponent },
-  { path: 'lancamentos/:codigo', component: LancamentoCadastroComponent },
-  { path: 'pessoas', component: PessoasPesquisaComponent },
-  { path: 'pagina-nao-encotrada', component: PaginaNaoEncotradaComponent },
-  { path: '**', redirectTo: 'pagina-nao-encotrada' }
-];
+import {AppRoutingModule} from './app-routing.module';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -37,11 +23,11 @@ registerLocaleData(localePt, 'pt-BR');
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
 
     CoreModule,
     LancamentosModule,
-    PessoasModule
+    PessoasModule,
+    AppRoutingModule
   ],
   providers: [
   ],
