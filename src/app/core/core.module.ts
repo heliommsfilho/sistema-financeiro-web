@@ -13,6 +13,7 @@ import { CategoriasService } from '../categorias/categorias.service';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncotradaComponent } from './pagina-nao-encotrada.component';
 import {Title} from '@angular/platform-browser';
+import {AuthService} from '../seguranca/auth.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {Title} from '@angular/platform-browser';
     LancamentoService,
     CategoriasService,
     PessoaService,
+    AuthService,
 
     ConfirmationService,
     Title

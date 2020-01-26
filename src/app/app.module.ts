@@ -11,6 +11,7 @@ import {CoreModule} from './core/core.module';
 import {registerLocaleData} from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import {AppRoutingModule} from './app-routing.module';
+import {SegurancaModule} from './seguranca/seguranca.module';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -27,6 +28,7 @@ registerLocaleData(localePt, 'pt-BR');
     CoreModule,
     LancamentosModule,
     PessoasModule,
+    SegurancaModule,
     AppRoutingModule
   ],
   providers: [
