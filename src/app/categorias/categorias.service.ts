@@ -13,9 +13,7 @@ export class CategoriasService {
               private errorHandler: ErrorHandlerService) { }
 
   listarTodas(): Promise<any> {
-    let headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW46YWRtaW4=');
-
-    return this.httpClient.get(`${this.categoriasUrl}`, { headers })
+    return this.httpClient.get(`${this.categoriasUrl}` )
                           .toPromise()
                           .then(res => res)
                           .catch(erro => this.errorHandler.handle(erro));

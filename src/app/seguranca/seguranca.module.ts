@@ -7,7 +7,9 @@ import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 
-
+export function tokenGetter(): string {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [LoginFormComponent],
@@ -19,7 +21,9 @@ import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
     SegurancaRoutingModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => ''
+        tokenGetter: () => tokenGetter(),
+        whitelistedDomains: ['localhost:8080'],
+        blacklistedRoutes: ['http://localhost:8080/oauth/token']
     }})
   ],
   providers: [ JwtHelperService ]
