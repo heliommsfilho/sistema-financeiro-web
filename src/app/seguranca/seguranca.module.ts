@@ -6,6 +6,8 @@ import {SegurancaRoutingModule} from './seguranca-routing.module';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {MoneyHttpInterceptor} from './money-http-interceptor';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token');
@@ -26,6 +28,11 @@ export function tokenGetter(): string {
         blacklistedRoutes: ['http://localhost:8080/oauth/token', 'http://localhost:8080/login']
     }})
   ],
-  providers: [ JwtHelperService ]
+  providers: [ JwtHelperService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MoneyHttpInterceptor,
+      multi: true
+    }]
 })
 export class SegurancaModule { }

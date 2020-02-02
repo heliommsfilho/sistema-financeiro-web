@@ -61,6 +61,12 @@ export class AuthService {
       });
   }
 
+  isAccessTokenInvalido() {
+    const token = localStorage.getItem('token');
+
+    return !token || this.jwtHelper.isTokenExpired(token);
+  }
+
   private armazenasToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     console.log(this.jwtPayload);
