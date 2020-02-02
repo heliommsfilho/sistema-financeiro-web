@@ -10,8 +10,12 @@
 
     <ul class="navbar-menu" [hidden]="!exibindoMenu">
         <li class="navbar-usuario">{{ this.authService.jwtPayload.user_name }}</li>
-        <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/lancamentos">Lançamentos</a></li>
-        <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/pessoas">Pessoas</a></li>
+        <li class="navbar-menuitem" routerLinkActive="ativo"
+            *ngIf="authService.temPermissao('ROLE_PESQUISAR_LANCAMENTO')">
+          <a routerLink="/lancamentos">Lançamentos</a></li>
+        <li class="navbar-menuitem" routerLinkActive="ativo"
+            *ngIf="authService.temPermissao('ROLE_PESQUISAR_PESSOA')">
+          <a routerLink="/pessoas">Pessoas</a></li>
         <li class="navbar-menuitem"><a href="#">Logout</a></li>
     </ul>
 </nav>
