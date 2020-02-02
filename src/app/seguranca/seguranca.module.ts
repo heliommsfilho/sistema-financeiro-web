@@ -23,7 +23,7 @@ export function tokenGetter(): string {
       config: {
         tokenGetter: () => tokenGetter(),
         whitelistedDomains: ['localhost:8080'],
-        blacklistedRoutes: ['http://localhost:8080/oauth/token']
+        blacklistedRoutes: ['http://localhost:8080/oauth/token', 'http://localhost:8080/login']
     }})
   ],
   providers: [ JwtHelperService ]
