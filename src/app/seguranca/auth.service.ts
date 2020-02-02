@@ -25,6 +25,13 @@ export class AuthService {
                           })
                           .catch(erro => {
                             console.log(erro);
+                            if (erro.status === 400) {
+                              if (erro.error.error === 'invalid_grant') {
+                                return Promise.reject('Usuário ou senha inválida');
+                              }
+                            }
+
+                            return Promise.reject(erro);
                           });
   }
 
